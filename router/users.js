@@ -16,9 +16,10 @@ import user_Not_Found from "../middlewares/user_not_found.js";
 
 const router = Router()
 
+
+router.post('/register', validator(schemaUsersCreated), accountExist, createHash, create)
 router.get('/all', allUser); // passport.authenticate('jwt', { session: false }),
 router.get('/id/:id', userById)
-router.post('/register', validator(schemaUsersCreated), accountExist, createHash, create)
 router.post('/createusers', validator(schemaManyUsers), accountsExist, createHashes, createUsers);
 router.delete('/delete/:id', deleteUserById, user_Not_Found);
 router.put('/update/:id', updateUserById, user_Not_Found);
