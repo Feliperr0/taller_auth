@@ -1,5 +1,5 @@
 import User from "../../models/User.js";
-import bcrypt from "bcryptjs";
+
 
 let create = async (req, res, next) => {
   try {
@@ -39,7 +39,6 @@ export { create, createUsers }
 
 
 
-// Middleware para validar si las cuentas existen y hashear contraseñas
 
 
 
