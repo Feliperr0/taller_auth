@@ -11,6 +11,7 @@ import accountsExist from "../middlewares/accountsExist.js";
 import createHashes from "../middlewares/createHashes.js";
 import deleteUserById from "../controllers/users/delete.js";
 import updateUserById from "../controllers/users/update.js";
+import user_Not_Found from "../middlewares/user_not_found.js";
 
 
 const router = Router()
@@ -19,10 +20,8 @@ router.get('/all', allUser); // passport.authenticate('jwt', { session: false })
 router.get('/id/:id', userById)
 router.post('/register', validator(schemaUsersCreated), accountExist, createHash, create)
 router.post('/createusers', validator(schemaManyUsers), accountsExist, createHashes, createUsers);
-router.delete('/delete/:id', deleteUserById)
-router.put('/update/:id', updateUserById)
-
-
+router.delete('/delete/:id', deleteUserById, user_Not_Found);
+router.put('/update/:id', updateUserById, user_Not_Found);
 
 
 export default router
