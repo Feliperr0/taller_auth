@@ -1,5 +1,5 @@
 import "dotenv/config.js"
-import '../../config/dataBase.js'
+import '../../config/database.js'
 import mongoose from 'mongoose';
 
 import Bill from "../Bill.js";
@@ -9,7 +9,6 @@ let bills = [
         description: "Grocery Shopping",
         amount: 150.25,
         user: new mongoose.Types.ObjectId("6732a7f8dc82bd3c3513ce56")
-
 
     },
     {

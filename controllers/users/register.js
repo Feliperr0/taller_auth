@@ -18,43 +18,28 @@ let create = async (req, res, next) => {
   }
 };
 
-const createUsers = async (req, res, next) => {
-    try {
-      const users = req.body.users; // Suponiendo que la petición incluye un array de usuarios en `req.body.users`
-  
-      // Validar y hashear contraseñas
-      const processedUsers = await Promise.all(users.map(async (user) => {
-        // Validar si la cuenta existe
-        const existingUser = await User.findOne({ email: user.email });
-        if (existingUser) {
-          throw new Error(`User with email ${user.email} already exists`);
-        }
-  
-        // Hashear la contraseña
-        const hashedPassword = await bcrypt.hash(user.password, 10);
-        return { ...user, password: hashedPassword, online: false }; // Inicializar `online` a false
-      }));
-  
-      // Crear usuarios en la base de datos
-      const createdUsers = await User.insertMany(processedUsers);
-  
-      return res.status(201).json({
-        success: true,
-        message: "Users created successfully",
-        users: createdUsers
-      });
-    } catch (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.message
-      });
-    }
-  };
+const createUsers = async (req, res) => {
+  try {
+    let users = req.body;
 
 
-export {create, createUsers}
+    let createdUsers = await User.insertMany(users);
+
+    return res.status(201).json({
+      success: true,
+      message: "Users created successfully",
+      users: createdUsers
+    });
+  } catch (error) {
+    next(error)
+  }
+};
+
+export { create, createUsers }
 
 
 
 // Middleware para validar si las cuentas existen y hashear contraseñas
+
+
 

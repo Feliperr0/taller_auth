@@ -1,15 +1,14 @@
 const validator = (schema) => [
     (req, res, next) => {
-        const validation = schema.validate(req.body, { abortEaly: false }) //valida el body del esquema, esta parte al encontrar el primer error permite que siga validando
+        const validation = schema.validate(req.body, { abortEarly: false }) // Corregir `abortEaly` a `abortEarly`
         if (validation.error) {
             return res.status(400).json({
-                succes: false,
+                success: false, 
                 message: validation.error.details.map(error => error.message)
-            })
-
+            });
         }
-        return next()
+        return next();
     }
-]
+];
 
-export default validator
+export default validator;
