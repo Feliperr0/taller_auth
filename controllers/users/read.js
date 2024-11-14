@@ -23,7 +23,7 @@ let userByRole = async (req, res, next) => {
     }
 }
 
-let userById = async (req, res) => {
+let userById = async (req, res, next) => {
     try {
         let idQuery = req.params.id;
         let all = await User.findById(idQuery);

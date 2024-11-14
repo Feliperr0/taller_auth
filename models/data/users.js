@@ -1,5 +1,6 @@
 import "dotenv/config.js"
-import '../../config/dataBase.js'
+import '../../config/database.js'
+import mongoose from "mongoose";
 import User from '../User.js'
 
 let users = [

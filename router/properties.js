@@ -7,17 +7,17 @@ import validator from "../middlewares/validator.js";
 import propertySchema from "../schemas/properties/createProperties.js";
 import updatePropertyById from "../controllers/properties/update.js";
 import schemaManyProperties from "../schemas/properties/createManyProperties.js"
-
+import passport from "../middlewares/passport.js";
 
 
 const router = Router()
 
-router.get('/all', getAllProperties); // passport.authenticate('jwt', { session: false }),
-router.get('/id/:id', PropertyById)
-router.delete('/delete/:id', deletePropertyById, user_Not_Found);
-router.post('/create', validator(propertySchema), create)
-router.post('/createproperties', validator(schemaManyProperties), createProperties)
-router.put('/update/:id', validator(propertySchema), updatePropertyById)
+router.get('/all', passport.authenticate('jwt', { session: false }), getAllProperties); // passport.authenticate('jwt', { session: false }),
+router.get('/id/:id', passport.authenticate('jwt', { session: false }), PropertyById)
+router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), deletePropertyById, user_Not_Found);
+router.post('/create', passport.authenticate('jwt', { session: false }), validator(propertySchema), create)
+router.post('/createproperties', passport.authenticate('jwt', { session: false }), validator(schemaManyProperties), createProperties)
+router.put('/update/:id', passport.authenticate('jwt', { session: false }), validator(propertySchema), updatePropertyById)
 
 
 export default router
