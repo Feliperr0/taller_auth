@@ -4,7 +4,7 @@ const error_handler = (error,req,res,next) => {
         success: false,
         response: error,
         messagge: "Error",
-        prueba: "hola tonotos"
+        advice: "Something goes wrong..."
     });
 }
 
