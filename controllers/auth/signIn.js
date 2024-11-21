@@ -16,9 +16,6 @@ export default async (req, res, next) => {
                 photo: req.user.photo
             },
             token: req.token
-         
-
-
         })
 
     } catch (error) {

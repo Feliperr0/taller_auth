@@ -11,12 +11,6 @@ export default async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "Disconnected",
-            user: {
-                email: req.user.email,
-                photo: req.user.photo
-            },
-            token: req.token
-         
 
 
         })
